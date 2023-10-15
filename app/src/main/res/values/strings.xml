@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">cdam_front</string>
+    <string name="email">Email</string>
+    <string name="signup">Signup</string>
+    <string name="phone">Phone</string>
+    <string name="fullName">Full Name</string>
+    <string name="password">Password</string>
 </resources>

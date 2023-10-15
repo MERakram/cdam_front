@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.cdam_front"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.cdam_front"
