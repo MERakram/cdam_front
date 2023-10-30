@@ -44,7 +44,7 @@
             android:layout_below="@id/appbar"
             android:text="identifiez-vous"
             android:textSize="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             />
 
 
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text"
             android:gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/email"
             android:gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -109,7 +109,7 @@
             android:text="MOT DE PASS OUBLIE ?"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:textStyle="bold" />
 
 
@@ -118,8 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/oub"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint="@android:color/holo_orange_dark"
             android:text="CONNECTEZ-VOUS"
             android:textColor="@color/white" />
@@ -129,13 +128,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/loginButton"
+            android:layout_marginTop="40dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nouveau sur Joumia?" />
+                android:text="Nouveau sur Joumia?"
+                android:textSize="14dp"
+                />
 
             <TextView
                 android:id="@+id/Registrepage"
@@ -182,7 +184,7 @@
             android:layout_below="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:orientation="horizontal">
 
