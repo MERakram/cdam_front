@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">cdam_front</string>
-    <string name="email">Email</string>
-    <string name="signup">Signup</string>
-    <string name="phone">Phone</string>
-    <string name="fullName">Full Name</string>
-    <string name="password">Password</string>
+    <string name="app_name">TP</string>
+    <string-array name="country_codes">
+        <item>+213</item>
+        <item>+216</item>
+    </string-array>
 </resources>

@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "cdam_front"
+rootProject.name = "helloapp"
 include(":app")
  

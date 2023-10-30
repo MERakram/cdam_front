@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cdam_front"
+    namespace = "com.example.helloapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.cdam_front"
+        applicationId = "com.example.helloapp"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
