@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/appbar"
             android:text="identifiez-vous"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:layout_marginTop="20dp"
             />
 
