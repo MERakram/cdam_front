@@ -21,7 +21,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:text="Connectez-vous"
             android:textSize="24dp"
             android:textColor="@color/white"/>
@@ -113,13 +112,12 @@
             android:textStyle="bold" />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/oub"
             android:layout_marginTop="40dp"
-            android:backgroundTint="@android:color/holo_orange_dark"
+            android:background="@drawable/mybtn"
             android:text="CONNECTEZ-VOUS"
             android:textColor="@color/white" />
 

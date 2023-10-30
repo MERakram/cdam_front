@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,11 +43,14 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
 
+                if (!(prenom.isEmpty()||nom.isEmpty()||email.isEmpty()||password.isEmpty()||phoneNumber.isEmpty()))
+                {
                 UserInfo userInfo = new UserInfo(prenom, nom, email, password, phoneNumber);
                 Intent intent = new Intent(RegisterActivity.this, Userinfo.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("UserInfo", userInfo);
                 startActivity(intent);
-
+                }
             }
         });
     }
