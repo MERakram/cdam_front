@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Créer un Compt"
+            android:text="Créer un Compte"
             android:textSize="24dp"
             android:textColor="@color/white"/>
     </LinearLayout>
@@ -38,8 +38,9 @@
         android:layout_below="@id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Créer un nouveau Compt"
+        android:text="Créer un nouveau Compte"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
         android:textSize="18dp"
         />
     <LinearLayout
@@ -76,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:src="@drawable/outline_perm_identity_24" />
+            android:src="@drawable/baseline_person_24" />
         <EditText
             android:id="@+id/nomInput"
             android:layout_width="0dp"
