@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal"
+        app:subtitleTextAppearance="@style/Theme.TP2"
+        app:titleTextAppearance="@style/Base.Theme.TP2"
+        tools:ignore="MissingConstraints">
+
+        <Space
+            android:layout_width="120dp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/search" />
+
+        <Space
+            android:layout_width="25dp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/btnqr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/scan" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:background="@drawable/shadow"
+        android:backgroundTint="@color/white"
+        android:elevation="5dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/calander"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:backgroundTint="@android:color/transparent"
+            android:onClick="showDatePicker"
+            android:src="@drawable/calander" />
+
+        <TextView
+            android:id="@+id/date_t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="dd mmm yyyy"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/itemss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date"
+        android:layout_above="@+id/floating"
+        tools:listitem="@layout/item_product"
+        />
+
+    <LinearLayout
+        android:id="@+id/price_l"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/teal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/price_t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:background="@drawable/radius"
+            android:paddingHorizontal="40dp"
+            android:paddingVertical="10dp"
+            android:text="0.0 DZD"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="center"
+            android:background="@drawable/red"
+            android:textColor="@android:color/white"
+            android:paddingHorizontal="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="70dp"
+            android:layout_marginBottom="90dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
+        app:shapeAppearance="@style/Widget.MaterialComponents.Snackbar"
+        android:src="@drawable/cart"
+        app:backgroundTint="@color/white"
+        app:tint="@color/teal" />
+
+    <LinearLayout
+        android:id="@+id/date_pl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/price_l"
+        android:layout_below="@+id/date"
+        android:background="#65000000"
+        android:gravity="center"
+        android:visibility="gone">
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:headerBackground="@color/teal"/>
+    </LinearLayout>
+
+</RelativeLayout>

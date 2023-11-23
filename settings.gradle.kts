@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "helloapp"
+rootProject.name = "TP2"
 include(":app")
  

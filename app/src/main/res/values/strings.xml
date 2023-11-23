@@ -1,7 +1,3 @@
 <resources>
-    <string name="app_name">TP</string>
-    <string-array name="country_codes">
-        <item>+213</item>
-        <item>+216</item>
-    </string-array>
+    <string name="app_name">TP2</string>
 </resources>
