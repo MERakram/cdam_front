@@ -1,23 +1,29 @@
-package com.example.helloapp;
+package com.example.cdam_front;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.Toast;
+import android.widget.Spinner;
+
+import com.example.cdam_front.adapters.CountryAdapter;
+import com.example.cdam_front.models.Country;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.activity_register);
 
         ImageView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -26,6 +32,13 @@ public class RegisterActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        Spinner spinner = findViewById(R.id.spinner);
+        List<Country> items = new ArrayList<>();
+        items.add(new Country(R.drawable.flag_algeria, "Algeria"));
+        CountryAdapter countryAdapter  = new CountryAdapter(this,items);
+
+        spinner.setAdapter(countryAdapter);
 
         Button registerButton = findViewById(R.id.RegistreButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -47,9 +60,11 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                 UserInfo userInfo = new UserInfo(prenom, nom, email, password, phoneNumber);
                 Intent intent = new Intent(RegisterActivity.this, Userinfo.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_REORDER_TO_FRONT|Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("UserInfo", userInfo);
                 startActivity(intent);
+                }else {
+                    Toast.makeText(getApplicationContext(), "Please fill in all fields.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

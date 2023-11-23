@@ -1,4 +1,4 @@
-package com.example.helloapp;
+package com.example.cdam_front;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,7 @@ public class Userinfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.userinfo);
+        setContentView(R.layout.activity_userinfo);
         RegisterActivity.UserInfo userInfo = (RegisterActivity.UserInfo) getIntent().getSerializableExtra("UserInfo");
 
         TextView prenomTextView = findViewById(R.id.prenomTextView);

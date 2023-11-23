@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">TP</string>
+    <string name="total">Total :%s</string>
+    <string name="signup">Sign Up</string>
     <string-array name="country_codes">
         <item>+213</item>
-        <item>+216</item>
     </string-array>
 </resources>

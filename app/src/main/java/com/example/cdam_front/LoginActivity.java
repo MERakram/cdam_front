@@ -1,4 +1,4 @@
-package com.example.helloapp;
+package com.example.cdam_front;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
         TextView loginButton = findViewById(R.id.Registrepage);
 
         loginButton.setOnClickListener(new View.OnClickListener() {

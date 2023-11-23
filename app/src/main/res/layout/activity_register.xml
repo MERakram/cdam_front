@@ -60,6 +60,7 @@
         <EditText
             android:id="@+id/prenomInput"
             android:layout_width="0dp"
+            android:inputType="text"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Prenom"
@@ -82,6 +83,7 @@
         <EditText
             android:id="@+id/nomInput"
             android:layout_width="0dp"
+            android:inputType="text"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Nom"
@@ -154,7 +156,8 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:entries="@array/country_codes" />
+            android:id="@+id/spinner"
+        />
         <EditText
             android:id="@+id/phoneInput"
             android:layout_width="0dp"
