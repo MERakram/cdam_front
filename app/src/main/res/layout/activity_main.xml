@@ -49,13 +49,13 @@
         android:gravity="center_vertical">
 
         <ImageButton
-            android:id="@+id/calander"
+            android:id="@+id/calender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:backgroundTint="@android:color/transparent"
             android:onClick="showDatePicker"
-            android:src="@drawable/calander" />
+            android:src="@drawable/calender" />
 
         <TextView
             android:id="@+id/date_t"
@@ -80,7 +80,7 @@
     <LinearLayout
         android:id="@+id/price_l"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:background="@color/teal"
         android:gravity="center">

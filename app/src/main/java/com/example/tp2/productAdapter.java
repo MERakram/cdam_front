@@ -13,9 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class productAdapter extends ArrayAdapter<Product> {
@@ -26,20 +23,18 @@ public class productAdapter extends ArrayAdapter<Product> {
     private ImageView card_img;
     private TextView card_name;
     private TextView card_category;
-    private ArrayList<Boolean> card_b;
-    private double total = 0;
 
     public productAdapter(@NonNull Context context, Activity activity, int itemResourceId, List<Product> items) {
         super(context, 0, items);
         this.activity = activity;
         this.itemResourceId = itemResourceId;
         this.items = items;
-        this.card_b = new ArrayList<>(Collections.nCopies(items.size(), true));
     }
 
+    @NonNull
     @SuppressLint("SetTextI18n")
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View layout;
         if (convertView == null) {
             LayoutInflater inflater = activity.getLayoutInflater();
@@ -103,20 +98,22 @@ public class productAdapter extends ArrayAdapter<Product> {
         });
 
         productImage.setOnClickListener(v -> {
-            card_b.set(position, !card_b.get(position));
             card = layout.findViewById(R.id.card);
             card_img = layout.findViewById(R.id.card_img);
             card_name = layout.findViewById(R.id.card_name);
             card_category = layout.findViewById(R.id.card_category);
 
-            if(!card_b.get(position)) {
-                card.setVisibility(View.VISIBLE);
-                card_img.setImageResource(items.get(position).getImage());
-                card_name.setText(items.get(position).getName());
-                card_category.setText(items.get(position).getCategory());
-            }else {
+            currentProduct.toggleOpened();
+
+            if(currentProduct.opened()){
                 card.setVisibility(View.GONE);
+            }else {
+                card_img.setImageResource(currentProduct.getImage());
+                card_name.setText(currentProduct.getName());
+                card_category.setText(currentProduct.getCategory());
+                card.setVisibility(View.VISIBLE);
             }
+            notifyDataSetChanged();
         });
 
         return layout;
@@ -138,7 +135,7 @@ public class productAdapter extends ArrayAdapter<Product> {
     }
 
     public void getAllTotal() {
-        total=0;
+        double total = 0;
 
         for (Product item : this.items) {
             if (item.selected())

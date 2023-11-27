@@ -18,14 +18,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    private ListView item;
-    private ImageButton calandar;
-    private TextView txtcalandar;
-    private Toolbar toolbar1;
     public static TextView price_t;
     public static TextView counter;
-    private DatePicker datePicker;
-    private ImageButton calander;
     private boolean date;
     private TextView date_t;
     private LinearLayout date_pl;
@@ -35,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar1 = findViewById(R.id.toolbar);
+        Toolbar toolbar1 = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar1);
 
         price_t = findViewById(R.id.price_t);
@@ -47,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             toolbar1.setSubtitleTextColor(getResources().getColor(R.color.white));
         }
 
-        item = findViewById(R.id.itemss);
+        ListView item = findViewById(R.id.itemss);
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -74,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         counter = findViewById(R.id.counter);
         setCounterVisibility();
 
-        datePicker = findViewById(R.id.datePicker);
-        calander = findViewById(R.id.calander);
+        DatePicker datePicker = findViewById(R.id.datePicker);
+        ImageButton calander = findViewById(R.id.calender);
         date_t = findViewById(R.id.date_t);
         date_pl = findViewById(R.id.date_pl);
 
@@ -97,12 +91,9 @@ public class MainActivity extends AppCompatActivity {
                 datePicker.getYear(),
                 datePicker.getMonth(),
                 datePicker.getDayOfMonth(),
-                new DatePicker.OnDateChangedListener() {
-                    @Override
-                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        String selectedDate = String.format(Locale.getDefault(), "%02d %s %d", dayOfMonth, getMonthName(monthOfYear), year);
-                        date_t.setText(selectedDate);
-                    }
+                (view, year, monthOfYear, dayOfMonth) -> {
+                    String selectedDate = String.format(Locale.getDefault(), "%02d %s %d", dayOfMonth, getMonthName(monthOfYear), year);
+                    date_t.setText(selectedDate);
                 }
         );
     }

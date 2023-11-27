@@ -84,7 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:src="@drawable/add" />
+                android:src="@drawable/add"
+                android:importantForAccessibility="no" />
 
             <TextView
                 android:id="@+id/quantity"
@@ -98,7 +99,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:src="@drawable/mince" />
+                android:src="@drawable/mince"
+                android:importantForAccessibility="no" />
 
         </LinearLayout>
 
