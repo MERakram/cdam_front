@@ -1,5 +1,5 @@
 package com.example.tp2;
-
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -14,9 +14,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.Locale;
-
+import android.content.DialogInterface;
 public class MainActivity extends AppCompatActivity {
     public static TextView price_t;
     public static TextView counter;
@@ -29,19 +31,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar1 = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar1);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         price_t = findViewById(R.id.price_t);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Commande de :");
             getSupportActionBar().setSubtitle("Grossiste kaf naadja");
-            toolbar1.setTitleTextColor(getResources().getColor(R.color.white));
-            toolbar1.setSubtitleTextColor(getResources().getColor(R.color.white));
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+            toolbar.setSubtitleTextColor(getResources().getColor(R.color.white));
         }
 
-        ListView item = findViewById(R.id.itemss);
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -62,8 +63,38 @@ public class MainActivity extends AppCompatActivity {
         items.add(new Product(R.drawable.img2, "Pistache", "F", 150.0));
         items.add(new Product(R.drawable.img2, "Pistache", "F", 150.0));
 
-        productAdapter adapter = new productAdapter(this,MainActivity.this, R.layout.item_product, items);
-        item.setAdapter(adapter);
+        ListView listView = findViewById(R.id.listView);
+        productAdapter adapter = new productAdapter(this, MainActivity.this, R.layout.item_product, items);
+        listView.setAdapter(adapter);
+
+//        ExpandableListView expandableListView = findViewById(R.id.expandableListView);
+//        CustomExpandableListAdapter expandableListAdapter = new CustomExpandableListAdapter(this, MainActivity.this, R.layout.item_product, items);
+//        expandableListView.setAdapter(expandableListAdapter);
+
+        FloatingActionButton floatingActionBtn = findViewById(R.id.floating);
+        floatingActionBtn.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage("Do you want to proceed?");
+            builder.setTitle("Confirmation !");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+                for(Product item : items){
+                    item.setCount(0);
+                    item.setSelected(false);
+                    item.calculateTotal();
+                    adapter.notifyDataSetChanged();
+                }
+                    adapter.getAllTotal();
+                    setCounter(0);
+                dialog.cancel();
+            });
+            builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+                dialog.cancel();
+            });
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        });
 
         counter = findViewById(R.id.counter);
         setCounterVisibility();
@@ -74,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         date_pl = findViewById(R.id.date_pl);
 
         date_pl.setOnClickListener(v -> {
-            date_pl.setVisibility(View.GONE);
+                    date_pl.setVisibility(View.GONE);
                 }
         );
 
@@ -96,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     date_t.setText(selectedDate);
                 }
         );
+
     }
 
     private String getMonthName(int month) {
@@ -104,19 +136,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static void setCounterVisibility(){
+    public static void setCounterVisibility() {
         if (Integer.parseInt(counter.getText().toString()) == 0) {
             counter.setVisibility(View.GONE);
         } else {
             counter.setVisibility(View.VISIBLE);
         }
-    }   public static void incrementCounter(){
+    }
+
+    public static void incrementCounter() {
         int currentCount = Integer.parseInt(String.valueOf(MainActivity.counter.getText()));
         counter.setText(String.valueOf(currentCount + 1));
         setCounterVisibility();
-    }   public static void decrementCounter(){
+    }
+
+    public static void decrementCounter() {
         int currentCount = Integer.parseInt(String.valueOf(MainActivity.counter.getText()));
         counter.setText(String.valueOf(currentCount - 1));
+        setCounterVisibility();
+    }
+    public void setCounter(int count){
+        counter.setText(String.valueOf(count));
         setCounterVisibility();
     }
 }

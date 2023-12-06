@@ -68,19 +68,31 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/itemss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/date"
-        android:layout_above="@+id/floating"
-        tools:listitem="@layout/item_product"
-        />
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/date"
+            android:layout_above="@+id/floating"
+            tools:listitem="@layout/item_product"
+            />
+
+<!--    <ExpandableListView-->
+<!--        android:id="@+id/expandableListView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_above="@+id/floating"-->
+<!--        android:layout_below="@+id/date"-->
+<!--        android:divider="@android:color/black"-->
+<!--        android:groupIndicator="@null"-->
+<!--        android:dividerHeight="0.5dp"-->
+<!--        android:indicatorLeft="?android:attr/expandableListPreferredChildIndicatorLeft"-->
+<!--        tools:listitem="@layout/item_product" />-->
 
     <LinearLayout
         android:id="@+id/price_l"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/teal"
         android:gravity="center">
@@ -99,19 +111,19 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-        <TextView
-            android:id="@+id/counter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textAlignment="center"
-            android:background="@drawable/red"
-            android:textColor="@android:color/white"
-            android:paddingHorizontal="5dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="70dp"
-            android:layout_marginBottom="90dp" />
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="70dp"
+        android:layout_marginBottom="90dp"
+        android:background="@drawable/red"
+        android:paddingHorizontal="5dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating"
@@ -121,9 +133,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="50dp"
-        app:shapeAppearance="@style/Widget.MaterialComponents.Snackbar"
         android:src="@drawable/cart"
         app:backgroundTint="@color/white"
+        app:shapeAppearance="@style/Widget.MaterialComponents.Snackbar"
         app:tint="@color/teal" />
 
     <LinearLayout
@@ -135,12 +147,13 @@
         android:background="#65000000"
         android:gravity="center"
         android:visibility="gone">
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:headerBackground="@color/teal"/>
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:headerBackground="@color/teal" />
     </LinearLayout>
 
 </RelativeLayout>

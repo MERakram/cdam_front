@@ -59,6 +59,9 @@ public class Product {
     public void calculateTotal(){
         this.total = price * count;
     }
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public double getTotal() {
         return total;
@@ -72,6 +75,9 @@ public class Product {
     }
     public boolean selected(){
         return selected;
+    }
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
     }
     public boolean opened(){
         return opened;

@@ -6,16 +6,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import java.util.HashMap;
 import java.util.List;
 
-public class productAdapter extends ArrayAdapter<Product> {
+public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     Activity activity;
     int itemResourceId;
     List<Product> items;
@@ -23,9 +25,10 @@ public class productAdapter extends ArrayAdapter<Product> {
     private ImageView card_img;
     private TextView card_name;
     private TextView card_category;
+    private Context mContext;
 
-    public productAdapter(@NonNull Context context, Activity activity, int itemResourceId, List<Product> items) {
-        super(context, 0, items);
+    public CustomExpandableListAdapter(Context mContext, Activity activity, int itemResourceId, List<Product> items) {
+        this.mContext = mContext;
         this.activity = activity;
         this.itemResourceId = itemResourceId;
         this.items = items;
@@ -33,7 +36,7 @@ public class productAdapter extends ArrayAdapter<Product> {
 
     @NonNull
     @SuppressLint("SetTextI18n")
-    @Override
+//    @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View layout;
         if (convertView == null) {
@@ -56,11 +59,11 @@ public class productAdapter extends ArrayAdapter<Product> {
         productCategory.setText(currentProduct.getCategory());
         productPrice.setText(String.valueOf(currentProduct.getCount()) + " x " + currentProduct.getPrice() + " DZD");
         productCount.setText(String.valueOf(currentProduct.getCount()));
-        productTotal.setText(String.valueOf(currentProduct.getTotal())+" DZD");
+        productTotal.setText(String.valueOf(currentProduct.getTotal()) + " DZD");
         productImage.setImageResource(currentProduct.getImage());
 
-        ImageButton increamentBtn = layout.findViewById(R.id.add);
-        ImageButton decreaseBtn = layout.findViewById(R.id.minus);
+        ImageButton add = layout.findViewById(R.id.add);
+        ImageButton minus = layout.findViewById(R.id.minus);
 
         if (currentProduct.selected()) {
             productCart.setImageResource(R.drawable.cart3);
@@ -74,27 +77,23 @@ public class productAdapter extends ArrayAdapter<Product> {
 
             if (currentProduct.selected()) {
                 productCart.setImageResource(R.drawable.cart3);
-                currentProduct.setCount(1);
-                currentProduct.calculateTotal();
                 MainActivity.incrementCounter();
             } else {
                 productCart.setImageResource(R.drawable.cart2);
-                currentProduct.setCount(0);
-                currentProduct.calculateTotal();
                 MainActivity.decrementCounter();
             }
             getAllTotal();
             notifyDataSetChanged();
         });
 
-        increamentBtn.setOnClickListener(view -> {
+        add.setOnClickListener(view -> {
             currentProduct.incrementCount();
             currentProduct.calculateTotal();
             getAllTotal();
             notifyDataSetChanged();
         });
 
-        decreaseBtn.setOnClickListener(view -> {
+        minus.setOnClickListener(view -> {
             currentProduct.decrementCount();
             currentProduct.calculateTotal();
             getAllTotal();
@@ -102,40 +101,108 @@ public class productAdapter extends ArrayAdapter<Product> {
         });
 
         productImage.setOnClickListener(v -> {
-            currentProduct.toggleOpened();
-
             card = layout.findViewById(R.id.card);
             card_img = layout.findViewById(R.id.card_img);
             card_name = layout.findViewById(R.id.card_name);
             card_category = layout.findViewById(R.id.card_category);
 
-            if(currentProduct.opened()){
+            currentProduct.toggleOpened();
+
+            if (currentProduct.opened()) {
                 card.setVisibility(View.GONE);
-            }else {
+            } else {
                 card_img.setImageResource(currentProduct.getImage());
                 card_name.setText(currentProduct.getName());
                 card_category.setText(currentProduct.getCategory());
                 card.setVisibility(View.VISIBLE);
             }
+            notifyDataSetChanged();
         });
-//            notifyDataSetChanged();
 
         return layout;
     }
 
     @Override
-    public int getCount() {
-        return items.size();
+    public int getGroupCount() {
+        return this.items.size();
     }
 
     @Override
-    public Product getItem(int i) {
-        return items.get(i);
+    public int getChildrenCount(int groupPosition) {
+        return this.items.size();
+//        return this.items.get(this.expandableListTitle.get(groupPosition)).size();
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public Object getGroup(int groupPosition) {
+        return this.items.get(groupPosition);
+    }
+
+    @Override
+    public Object getChild(int groupPosition, int childPosition) {
+        return this.items.get(groupPosition);
+//        return this.items.get(this.items.get(groupPosition)).get(childPosition);
+    }
+
+    @Override
+    public long getGroupId(int groupPosition) {
+        return groupPosition;
+    }
+
+    @Override
+    public long getChildId(int groupPosition, int childPosition) {
+        return childPosition;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    @Override
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+//        String listTitle = (String) getGroup(groupPosition);
+        View layout;
+        if (convertView == null) {
+            LayoutInflater inflater = activity.getLayoutInflater();
+            this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            layout = inflater.inflate(itemResourceId, parent, false);
+//            LayoutInflater inflater = (LayoutInflater)
+//            convertView = inflater.inflate(R.layout.item_product);
+//            convertView = inflater.inflate(R.layout.list_group,null);
+        }
+
+//        TextView listTitleTextView = convertView.findViewById(R.id.listTitle);
+//        listTitleTextView.setText(listTitle);
+        return convertView;
+    }
+
+    @Override
+    public View getChildView(int parentPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+
+        Product expandedListTile = (Product) getChild(parentPosition, childPosition);
+        if (convertView == null) {
+
+            LayoutInflater inflater = (LayoutInflater)
+                    this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.expandable_tile, null);
+
+        }
+//        card = convertView.findViewById(R.id.card);
+        card_img = convertView.findViewById(R.id.card_img);
+        card_name = convertView.findViewById(R.id.card_name);
+        card_category = convertView.findViewById(R.id.card_category);
+//        TextView expandedListTextView = convertView.findViewById(R.id.expandedListItem);
+//        expandedListTextView.setText(expandedListTile);
+        card_img.setImageResource(expandedListTile.getImage());
+        card_name.setText(expandedListTile.getName());
+        card_category.setText(expandedListTile.getCategory());
+        return convertView;
+    }
+
+    @Override
+    public boolean isChildSelectable(int groupPosition, int childPosition) {
+        return false;
     }
 
     public void getAllTotal() {
